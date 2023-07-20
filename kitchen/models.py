@@ -10,7 +10,7 @@ class Cook(AbstractUser):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
-        return reverse("taxi:cook-detail", kwargs={"pk": self.pk})
+        return reverse("kitchen:", kwargs={"pk": self.pk})
 
 
 class DishType(models.Model):
@@ -24,9 +24,9 @@ class Dish(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    dish_type = models.ForeignKey(DishType,
-                                  related_name="dishes",
-                                  on_delete=models.CASCADE)
+    dish_type = models.ForeignKey(
+        DishType, related_name="dishes", on_delete=models.CASCADE
+    )
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
     class Meta:
@@ -34,5 +34,5 @@ class Dish(models.Model):
         verbose_name_plural = "dishes"
 
     def __str__(self):
-        return {self.name}
+        return self.name
 
