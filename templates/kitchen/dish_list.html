@@ -17,14 +17,29 @@
   </p>
 
   {% if dish_list %}
-    <ul>
-      {% for dish in dish_list %}
-        <li>
-          <a href="{% url "kitchen:dish-detail" pk=dish.id %} ">{{ dish.id }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Dish type</th>
+          <th>Dish cooks bumber</th>
+          {% if user.position == "A" %}
+            <th>Add dish to cook</th>
+          {% endif %}
+        </tr>
+        {% for dish in dish_list %}
+          <tr>
+            <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
+            <td>{{ dish.price }}</td>
+            <td>{{ dish.dish_type }}</td>
+            <td>{{ dish.cooks.count }}{% if user in dish.cooks.all %} (with me){% endif %} </td>
+            {% if user.position == "A" %}
+              <td><a href="{% url 'kitchen:dish-add-cooks' pk=dish.id %}">Add dish to cook</a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
     <p>There are no dishes in kitchen</p>
   {% endif %}
 {% endblock %}

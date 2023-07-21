@@ -19,25 +19,22 @@
     </p>
 
     {% if cook_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Full name</th>
-        <th>Position</th>
-        <th>Years of experience</th>
-      </tr>
-    {% for cook in cook_list %}
-      <tr>
-        <td>{{ cook.id }}</td>
-        <td><a href="{{ cook.get_absolute_url }}">{{ cook.username }} {% if user == driver %} (Me){% endif %}</a></td>
-        <td>{{ cook.first_name }} {{ cook.last_name }}</td>
-        <td>{{ cook.get_position_display }}</td>
-        <td>{{ cook.years_of_experience }}</td>
-      </tr>
-    {% endfor %}
-
-    </table>
+      <table class="table">
+        <tr>
+          <th>Position</th>
+          <th>Username</th>
+          <th>Full name</th>
+          <th>Years of experience</th>
+        </tr>
+        {% for cook in cook_list %}
+          <tr>
+            <td>{{ cook.get_position_display }}</td>
+            <td><a href="{{ cook.get_absolute_url }}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></td>
+            <td>{{ cook.first_name }} {{ cook.last_name }}</td>
+            <td>{{ cook.years_of_experience }}</td>
+          </tr>
+        {% endfor %}
+      </table>
     {% else %}
       <p>There are no cooks in the service.</p>
     {% endif %}

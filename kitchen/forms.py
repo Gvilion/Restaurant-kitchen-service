@@ -35,16 +35,28 @@ class CookCreateForm(UserCreationForm):
         )
 
 
-
 class DishForm(forms.ModelForm):
     cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
+        required=False
     )
 
     class Meta:
         model = Dish
         fields = "__all__"
+
+
+class DishAddCookForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+
+    class Meta:
+        model = Dish
+        fields = ["cooks"]
 
 
 class DishSearchForm(forms.Form):
