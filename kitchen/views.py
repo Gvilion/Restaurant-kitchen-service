@@ -1,11 +1,10 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View, generic
 
-from kitchen.forms import DishTypeSearchForm, CookSearchForm, DishSearchForm, DishForm
+from kitchen.forms import DishTypeSearchForm, CookSearchForm, DishSearchForm, DishForm, CookCreateForm
 from kitchen.models import Cook, DishType, Dish
 
 
@@ -111,16 +110,25 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
-    fields = UserCreationForm.Meta.fields + (
-        "first_name",
-        "last_name",
-    )
+    form_class = CookCreateForm
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
+class ChefUpdateListView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    fields = ["dishes"]
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
+class ChefUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    fields = ["first_name", "last_name", "years_of_experience", "position"]
     success_url = reverse_lazy("kitchen:cook-list")
 
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
-    fields = ["years_of_experience"]
+    fields = ["first_name", "last_name"]
     success_url = reverse_lazy("kitchen:cook-list")
 
 

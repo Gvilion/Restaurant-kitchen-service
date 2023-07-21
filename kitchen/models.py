@@ -4,13 +4,26 @@ from django.urls import reverse
 
 
 class Cook(AbstractUser):
+    POSITION_CHOICES = (
+        ("A", "chef"),
+        ("B", "cook"),
+    )
+
     years_of_experience = models.IntegerField(null=True)
+    position = models.CharField(
+        max_length=1,
+        choices=POSITION_CHOICES,
+        default="B"
+    )
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
         return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
+
+    class Meta:
+        ordering = ["position"]
 
 
 class DishType(models.Model):

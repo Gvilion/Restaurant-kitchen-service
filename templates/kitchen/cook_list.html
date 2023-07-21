@@ -4,9 +4,11 @@
 {% block content %}
     <h1>
       Cook List
-      <a href="{% url 'kitchen:cook-create' %}" class="btn btn-primary link-to-page">
-        Create
-      </a>
+      {% if user.position == "A" %}
+        <a href="{% url 'kitchen:cook-create' %}" class="btn btn-primary link-to-page">
+          Create
+        </a>
+      {% endif %}
     </h1>
 
     <p>
@@ -21,16 +23,16 @@
       <tr>
         <th>ID</th>
         <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
+        <th>Full name</th>
+        <th>Position</th>
         <th>Years of experience</th>
       </tr>
     {% for cook in cook_list %}
       <tr>
         <td>{{ cook.id }}</td>
         <td><a href="{{ cook.get_absolute_url }}">{{ cook.username }} {% if user == driver %} (Me){% endif %}</a></td>
-        <td>{{ cook.first_name }}</td>
-        <td>{{ cook.last_name }}</td>
+        <td>{{ cook.first_name }} {{ cook.last_name }}</td>
+        <td>{{ cook.get_position_display }}</td>
         <td>{{ cook.years_of_experience }}</td>
       </tr>
     {% endfor %}
