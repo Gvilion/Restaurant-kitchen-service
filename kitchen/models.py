@@ -10,7 +10,7 @@ class Cook(AbstractUser):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
-        return reverse("kitchen:", kwargs={"pk": self.pk})
+        return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
 
 
 class DishType(models.Model):

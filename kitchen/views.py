@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View, generic
 
-from kitchen.forms import DishTypeSearchForm, CookSearchForm
+from kitchen.forms import DishTypeSearchForm, CookSearchForm, DishSearchForm, DishForm
 from kitchen.models import Cook, DishType, Dish
 
 
@@ -127,3 +127,52 @@ class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     success_url = reverse_lazy("kitchen:cook-list")
+
+
+class DishListView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        model = self.request.GET.get("model", "")
+
+        context["search_form"] = DishSearchForm(initial={
+            "model": model
+        })
+
+        return context
+
+    def get_queryset(self):
+        queryset = Dish.objects.all()
+
+        form = DishSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return queryset
+
+
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+
+
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    form_class = DishForm
+    success_url = reverse_lazy("kitchen:dish-list")
+
+
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    form_class = DishForm
+    success_url = reverse_lazy("kitchen:dish-list")
+
+
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Dish
+    success_url = reverse_lazy("kitchen:dish-list")
