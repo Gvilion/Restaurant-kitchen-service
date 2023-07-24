@@ -1,19 +1,24 @@
 .menu-span-vertical-line {
     width: 1px;
     height: 40px;
-    background: black;
+    /*background: black;*/
     margin: 0 1rem;
 }
 
 body {
+    background-image: url("../images/1306019.jpg");
     background-size: cover;
-    background-color: rgb(81,09,09);
 }
 
 .card-design {
     border-radius: 1rem;
     width: 60vw;
     margin-top: 200px;
+    margin-bottom: 20px;
+}
+
+.card-margins {
+    margin-top: 50px;
     margin-bottom: 20px;
 }
 

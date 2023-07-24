@@ -15,7 +15,6 @@ from kitchen.models import Cook, DishType, Dish
 
 
 class IndexView(View):
-
     def get_context_data(self, **kwargs):
         context = {
             "cooks": len(get_user_model().objects.all()),
@@ -64,14 +63,14 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish-type-create")
+    success_url = reverse_lazy("kitchen:dish-type-list")
     template_name = "kitchen/dish_type_form.html"
 
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish-type-update")
+    success_url = reverse_lazy("kitchen:dish-type-list")
     template_name = "kitchen/dish_type_form.html"
 
 
@@ -111,7 +110,6 @@ class CookListView(LoginRequiredMixin, generic.ListView):
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
-    # queryset = Cook.objects.all().prefetch_related("")
 
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
