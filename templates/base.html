@@ -18,22 +18,24 @@
 
 <body>
 
-{% block sidebar %}
+{% block navbar %}
   {% include "includes/navbar.html" %}
 {% endblock %}
 
 
-
-<div class="main-content">
-  <div class="row d-flex justify-content-center h-100">
-      <div class="card bg-dark text-white card-design">
-        <div class="card-body p-5">
-          {% block content %}{% endblock %}
-          {% include "includes/pagination.html" %}
+{% block main-cart %}
+  <div class="main-content">
+    <div class="row d-flex justify-content-center h-100">
+        <div class="card bg-dark text-white card-design">
+          <div class="card-body p-5">
+            {% block content %}{% endblock %}
+            {% include "includes/pagination.html" %}
+          </div>
         </div>
-      </div>
+    </div>
   </div>
-</div>
+{% endblock %}
+
 
 </body>
 

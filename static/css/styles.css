@@ -17,8 +17,6 @@ body {
     margin-bottom: 20px;
 }
 
-++++
-
 /* Custom CSS for pagination */
 .pagination {
   list-style: none;
@@ -47,5 +45,12 @@ body {
 .pagination .page-link:hover {
   background-color: gray;
 }
+
+/*.list-plate {*/
+/*    margin: 5px;*/
+/*    background-color: dimgray;*/
+/*    border-radius: 10px;*/
+/*    font-size: 1.3rem;*/
+/*}*/
 
 

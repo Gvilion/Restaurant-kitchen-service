@@ -2,44 +2,46 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Dish list
-    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
+  <p class="container">
+    <h1 class="mt-4">
+      Dish List
+      <a href="{% url 'kitchen:dish-create' %}" class="text-secondary link-to-page" style="font-size: 3rem">
+        +
+      </a>
+    </h1>
 
-  <p>
-    <form action="" method="get" class="form-inline">
-      {{ search_form|crispy }}
-      <input type="submit" value="🔍" class="btn btn-secondary">
-    </form>
-  </p>
+    <p>
+      <form action="" method="get" class="form-inline">
+        {{ search_form|crispy }}
+        <button type="submit" class="btn btn-secondary">🔍</button>
+      </form>
+    </p>
 
-  {% if dish_list %}
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Dish type</th>
-          <th>Dish cooks bumber</th>
-          {% if user.position == "A" %}
-            <th>Add dish to cook</th>
-          {% endif %}
-        </tr>
+
+    {% if dish_list %}
+      <div class="row">
         {% for dish in dish_list %}
-          <tr>
-            <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
-            <td>{{ dish.price }}</td>
-            <td>{{ dish.dish_type }}</td>
-            <td>{{ dish.cooks.count }}{% if user in dish.cooks.all %} (with me){% endif %} </td>
-            {% if user.position == "A" %}
-              <td><a href="{% url 'kitchen:dish-add-cooks' pk=dish.id %}">Add dish to cook</a></td>
-            {% endif %}
-          </tr>
+          <div class="col-xl-4 col-lg-6 mb-4">
+            <div class="card card-body d-flex bg-secondary">
+              <p class="fw-bold mb-1" style="font-size: 1.4rem">
+                <a href="{% url 'kitchen:dish-detail' pk=dish.id %}" style="color: #36454F">
+                  {{ dish.name }}
+                </a>
+              </p>
+              <hr>
+              <p>Price: {{ dish.price }}</p>
+              <p>Dish Type: {{ dish.dish_type }}</p>
+              <p>Dish Cooks Number: {{ dish.cooks.count }}</p>
+              {% if user.position == "A" %}
+                <p><a href="{% url 'kitchen:dish-add-cooks' pk=dish.id %}" class="btn btn-sm btn-dark">Add Dish to Cook</a></p>
+              {% endif %}
+            </div>
+          </div>
+
         {% endfor %}
-      </table>
     {% else %}
-    <p>There are no dishes in kitchen</p>
-  {% endif %}
+      <p class="mt-4">There are no dishes in the kitchen.</p>
+    {% endif %}
+  </div>
 {% endblock %}
+
