@@ -1,18 +1,18 @@
 # Restaurant Kitchen Service
-​
+
 ## Table of Contents
-​
+
 - [Program description](#program-description)
 - [Functional](#functional)
 - [Installation](#installation)
 - [Technologies](#technologies)
-​
+
 ## Program description
-​
+
 The Restaurant Kitchen Service project is a web application designed to facilitate
 efficient navigation and organization in a restaurant kitchen. It aims to assist kitchen staff,
 such as chefs and cooks, in managing various aspects of their daily tasks and operations.
-​
+
 ## Functional
 - Dish Management: The project allows users to create, view, and update 
 various dishes served in the kitchen. Each dish can have a name, description,
@@ -33,41 +33,41 @@ users to find specific dishes or staff members based on various criteria.
 
 - User Authentication: Robust user authentication and authorization mechanisms ensure
 that only authorized users can access and modify sensitive information.
-​
+
 ## Installation
-​
+
 1. Clone the repository:
 
-     ```angular2html
+    ```
     git clone https://github.com/Gvilion/restaurant-kitchen-service
     ```   
 
 2. Create virtual environment and activate it:
     
-    ```angular2html
+    ```
     python -m venv venv
     venv\Scripts\activate (on Windows)
     source venv/bin/activate (on macOS)
     ```   
     
 3. Install dependencies:
-   ```angular2html
+   ```
    pip install -r requirements.txt
    ```
 
 4. Apply database migrations:
-   ```angular2html
+   ```
    python manage.py migrate
    ```
 5. Create superuser:
-   ```angular2html
+   ```
    python manage.py createsuperuser
    ```
 6. Run django server using run button or type next command to the console:
-   ```angular2html
+   ```
    python manage.py runserver
    ```
-​
+
 ## Technologies
 1. Django: Django is the core framework used for building the web application.
 It provides a high-level Python web development environment with built-in features like URL routing,
@@ -82,4 +82,4 @@ and define the presentation of the web application's user interface.
 4. SQLite and PostgreSQL: Django supports multiple database backends, and my project use SQLite or PostgreSQL
 to store and manage data related to dishes, dish types, and kitchen staff. SQLite is used during development
 and testing, while PostgreSQL used in production environments
-​
+
