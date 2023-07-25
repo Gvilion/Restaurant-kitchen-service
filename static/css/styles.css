@@ -1,7 +1,7 @@
 .menu-span-vertical-line {
     width: 1px;
     height: 40px;
-    /*background: black;*/
+    background: black;
     margin: 0 1rem;
 }
 
@@ -22,7 +22,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Custom CSS for pagination */
 .pagination {
   list-style: none;
   padding: 0;
@@ -50,12 +49,3 @@ body {
 .pagination .page-link:hover {
   background-color: gray;
 }
-
-/*.list-plate {*/
-/*    margin: 5px;*/
-/*    background-color: dimgray;*/
-/*    border-radius: 10px;*/
-/*    font-size: 1.3rem;*/
-/*}*/
-
-
