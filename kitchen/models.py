@@ -1,3 +1,4 @@
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -49,3 +50,16 @@ class Dish(models.Model):
     def __str__(self):
         return self.name
 
+
+class CookManager(BaseUserManager):
+    def create_superuser(self, username, years_of_experience, password):
+        user = self.model(
+            username=username,
+            position="A",
+            years_of_experience=years_of_experience,
+            is_superuser=True,
+            is_staff=True
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
