@@ -91,6 +91,7 @@ class PrivateDishTypeTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual("New_name", self.dish_type.name)
 
+
 class DishTypeListSearchTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
