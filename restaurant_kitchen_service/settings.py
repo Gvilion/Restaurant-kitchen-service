@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DEBUG") != "False"
 
 ALLOWED_HOSTS = ["127.0.0.1",
-                 "newspaper-agency-6lg8.onrender.com"]
+                 "kitchen-mate.onrender.com"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
