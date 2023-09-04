@@ -1,0 +1,51 @@
+.menu-span-vertical-line {
+    width: 1px;
+    height: 40px;
+    background: black;
+    margin: 0 1rem;
+}
+
+body {
+    background-image: url("../images/1306019.jpg");
+    background-size: cover;
+}
+
+.card-design {
+    border-radius: 1rem;
+    width: 60vw;
+    margin-top: 200px;
+    margin-bottom: 20px;
+}
+
+.card-margins {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.pagination {
+  list-style: none;
+  padding: 0;
+}
+
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  border-radius: 0;
+  font-weight: bold;
+}
+
+.pagination .page-link.btn {
+  padding: 8px 12px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+.pagination .page-link:hover {
+  background-color: gray;
+}

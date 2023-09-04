@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <p class="container">
+    <h1 class="mt-4">
+      Dish List
+      <a href="{% url 'kitchen:dish-create' %}" class="text-secondary link-to-page" style="font-size: 3rem">
+        +
+      </a>
+    </h1>
+
+    <p>
+      <form action="" method="get" class="form-inline">
+        {{ search_form|crispy }}
+        <button type="submit" class="btn btn-secondary">🔍</button>
+      </form>
+    </p>
+
+
+    {% if dish_list %}
+      <div class="row">
+        {% for dish in dish_list %}
+          <div class="col-xl-4 col-lg-6 mb-4">
+            <div class="card card-body d-flex bg-secondary">
+              <p class="fw-bold mb-1" style="font-size: 1.4rem">
+                <a href="{% url 'kitchen:dish-detail' pk=dish.id %}" style="color: #36454F">
+                  {{ dish.name }}
+                </a>
+              </p>
+              <hr>
+              <p>Price: {{ dish.price }}</p>
+              <p>Dish Type: {{ dish.dish_type }}</p>
+              <p>Dish Cooks Number: {{ dish.cooks.count }}</p>
+              {% if user.position == "A" %}
+                <p><a href="{% url 'kitchen:dish-add-cooks' pk=dish.id %}" class="btn btn-sm btn-dark">Add Dish to Cook</a></p>
+              {% endif %}
+            </div>
+          </div>
+
+        {% endfor %}
+    {% else %}
+      <p class="mt-4">No dishes found.</p>
+    {% endif %}
+  </div>
+{% endblock %}

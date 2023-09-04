@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Dish Types List
+    <a href="{% url 'kitchen:dish-type-create' %}" class="text-secondary link-to-page" style="font-size: 3rem">
+      +
+    </a>
+  </h1>
+
+  <p>
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔍" class="btn btn-secondary">
+    </form>
+  </p>
+
+  {% if dish_type_list %}
+    <div class="row">
+      {% for dish_type in dish_type_list %}
+        <div class="col-xl-4 col-lg-6 mb-4">
+          <div class="card card-body d-flex bg-secondary">
+            <p class="fw-bold mb-1" style="font-size: 1.4rem">
+              <p>Name: {{ dish_type.name }}</p>
+            </p>
+            <hr>
+            <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}" role="group" class="btn btn-dark">Rename</a>
+            <br>
+            <a href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}" role="group" class="btn btn-dark link-to-page">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+      <p>No dishes found.</p>
+  {% endif %}
+{% endblock %}
