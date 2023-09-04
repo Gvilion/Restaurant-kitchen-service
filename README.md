@@ -92,3 +92,11 @@ and define the presentation of the web application's user interface.
 to store and manage data related to dishes, dish types, and kitchen staff. SQLite is used during development
 and testing, while PostgreSQL used in production environments
 
+## Demo
+
+![cooks.png](images_for_readme/cooks.png)
+![create_dish.png](images_for_readme/create_dish.png)
+![dishes_1.png](images_for_readme/dishes_1.png)
+![dishes_2.png](images_for_readme/dishes_2.png)
+![home_page.png](images_for_readme/home_page.png)
+![login_page.png](images_for_readme/login_page.png)
